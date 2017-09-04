@@ -65,7 +65,7 @@ export default class TweetList extends React.Component {
             text:tweettext
         })
         var el = document.getElementById("focusedInput");
-el.value = tweettext;
+        el.value = tweettext;
       //console.log(tweetid);
       //console.log(tweettext);
       //this.props.dispatch(updateTweet(tweetid,tweettext))
