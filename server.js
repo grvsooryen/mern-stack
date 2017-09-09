@@ -26,7 +26,7 @@ if (isDeveloping) {
     }
   });
   
-  var program = require('./app.js');
+  var program = require('./src/server');
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
   app.get('*', function response(req, res) {
