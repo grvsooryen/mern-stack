@@ -65,8 +65,8 @@ function updateContact(req, res) {
 Define All the routes of the controller in this file
 */
 app
-    .get('/contact/list', contactController.listContact)
-    .post('/contact/add', contactController.addContact)
-    .delete('/contact/remove/:id', contactController.removeContact)
-    .get('/contact/edit/:id', contactController.editContact)
-    .put('/contact/update/:id', contactController.updateContact);
+    .get('/contact', contactController.listContact)
+    .post('/contact', contactController.addContact)
+    .delete('/contact/:id', contactController.removeContact)
+    .get('/contact/:id', contactController.editContact)
+    .put('/contact/:id', contactController.updateContact);

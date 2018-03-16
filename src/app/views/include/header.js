@@ -2,13 +2,15 @@ import React from 'react';
 import { Navbar, NavDropdown, MenuItem, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import Navmenu from "../../components/navmenu";
 import RouteNavItem from "../../components/route-nav-item";
 
 export default class Header extends React.Component {
 
   render() {
     return (
-      <Navbar inverse collapseOnSelect staticTop className="mb-xs-0">
+      <div>
+      <Navbar inverse collapseOnSelect fluid={this.props.fluidNavbar} staticTop className="mb-xs-0">
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">MERN Stack</Link>
@@ -23,6 +25,7 @@ export default class Header extends React.Component {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      </div>
     );
   }
 }
