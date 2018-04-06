@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from "react-redux";
 
-import store from "./stores";
+import {configureStore} from "./stores/index";
 import App from './App';
-
+// import NewContact from './testdemo';
+// import ForgotPassword from './ForgotPassword';
 ReactDOM.render(
     <BrowserRouter basename="/">
-        <Provider store={store}>
-            <App />
+        <Provider store={configureStore()}>
+            <App/>
         </Provider>
     </BrowserRouter>
     , document.getElementById('root'));

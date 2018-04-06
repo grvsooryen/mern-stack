@@ -1,5 +1,6 @@
 import "whatwg-fetch";
 import * as API from "./config.js";
+
 export default class APIServices {
     static listContact() {
         return fetch(API.API_ROOT, {
@@ -12,7 +13,10 @@ export default class APIServices {
     static addContact(req) {
         return fetch(API.API_ROOT, {
             method: 'POST',
-            body: JSON.stringify(req)
+            body: JSON.stringify(req),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
     }
     static deleteContact(id) {
@@ -28,7 +32,10 @@ export default class APIServices {
     static updateContact(id, req) {
         return fetch(API.API_ROOT + "/" + id, {
             method: 'PUT',
-            body: JSON.stringify(req)
+            body: JSON.stringify(req),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
     }
 }

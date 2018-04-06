@@ -1,21 +1,23 @@
 import React from 'react';
 import { Nav, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import {connect} from 'react-redux';
 
 import SideBar from './components/sidebar';
-
+import * as actionCreators from '../../actions/usercontact.action';
 import APIServices from "../../services";
 
-export default class Demo extends React.Component {
+class Demo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { page: 'Contacts App', contacts: [{name: "abc"}, {name: "xyz"}] };
     this.deleteContact = this.deleteContact.bind(this);
     this.getContacts = this.getContacts.bind(this);
+    this.contactsTable=this.contactsTable.bind(this);
   }
 
   getContacts() {
+
      APIServices.listContact()
       .then(response => response.json())
       .then(data => {
@@ -50,7 +52,7 @@ console.log(evt,evt.currentTarget["data-index"],evt.currentTarget.id)
   }
 
   componentDidMount() {
-    this.getContacts();
+    this.props.onGetContact()
   }
 
   render() {
@@ -64,10 +66,22 @@ console.log(evt,evt.currentTarget["data-index"],evt.currentTarget.id)
         <SideBar />
         <Table responsive>
           <tbody>
-            {this.contactsTable(this.state.contacts)}
+            {this.contactsTable(this.props.userDetail)}
           </tbody>
         </Table>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return{
+      userDetail:state.contactDetail.result
+  }
+};
+const mapDispatchToProps = dispatch => {
+  return {
+      onGetContact:() => dispatch(actionCreators.getContactAPICall())
+  }
+};
+export default connect(mapStateToProps,mapDispatchToProps)(Demo);

@@ -4,8 +4,10 @@ import { FormGroup, ControlLabel, FormControl, HelpBlock, Grid, Row, Col, Button
 import SideBar from './components/sidebar';
 
 import APIServices from "../../services";
+import {connect} from 'react-redux';
+import * as actionCreators from '../../actions/usercontact.action';
 
-export default class NewContact extends React.Component {
+class NewContact extends React.Component {
 
     constructor(props) {
         super(props);
@@ -57,18 +59,22 @@ export default class NewContact extends React.Component {
 
     saveForm(e) {
         e.preventDefault();
-        APIServices.addContact(this.state)
-            .then(data => {
-                console.log("success");
-            },
-            data => {
-                console.log("API returned non 200");
-            })
-            .catch(err => {
-                dispatch(errorRTQ("API not working"));
-            });
+        this.props.onInsertContactDetail(this.state);
+        // APIServices.addContact(this.state)
+        //     .then(data => {
+        //         console.log("success");
+        //     },
+        //     data => {
+        //         console.log("API returned non 200");
+        //     })
+        //     .catch(err => {
+        //         dispatch(errorRTQ("API not working"));
+        //     });
     }
 
+    componentDidMount(){
+        console.log('result : ',this.props.userDetail);
+    }
     render() {
         return (
             <div className="container-fluid" style={{ marginLeft: "240px" }}>
@@ -141,4 +147,17 @@ export default class NewContact extends React.Component {
             </div>
         )
     }
+
 }
+
+const mapStateToProps = state => {
+    return{
+        userDetail:state.contactDetail.result!=null?console.log('reducer : ',state.contactDetail.result):console.log('reducer : null')
+    }
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        onInsertContactDetail:(contactResponse) => dispatch(actionCreators.contactAPICall(contactResponse))
+    }
+};
+export default connect(mapStateToProps,mapDispatchToProps)(NewContact);

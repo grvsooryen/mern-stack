@@ -7,7 +7,8 @@ import Home from './views/home';
 import Demo from './views/demo';
 import NewContact from './views/demo/newcontact';
 import Notfound from './views/notfound';
-
+//import NewContact from './testdemo';
+//import ForgotPassword from './ForgotPassword';
 class App extends Component {
 
 
@@ -15,13 +16,15 @@ class App extends Component {
     return (
       <div>
         <Header />
+        
         <Switch>
-          <Route exact path='/' component={Home}/>
+           <Route exact path='/' component={Home}/>
           <Route exact path='/demo' component={Demo}/>
           <Route path='/demo/new' component={NewContact}/>
-          <Route component={Notfound}/>
+          <Route component={Notfound}/> 
         </Switch>
         {this.props.children}
+        
         <Footer />
       </div>
     );

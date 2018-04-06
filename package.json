@@ -34,6 +34,7 @@
     "react": "^0.14.3",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^0.14.3",
+    "react-google-login-component": "^0.9.3",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
